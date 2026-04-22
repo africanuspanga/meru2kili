@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutUsSection from "@/components/sections/AboutUsSection";
 import AboutFounderSection from "@/components/sections/AboutFounderSection";
+import KilimanjaroHighlightsSection from "@/components/sections/KilimanjaroHighlightsSection";
+import MeruHighlightSection from "@/components/sections/MeruHighlightSection";
+import SafariHighlightsSection from "@/components/sections/SafariHighlightsSection";
+import DayTripsHighlightsSection from "@/components/sections/DayTripsHighlightsSection";
 import RecommendedBySection from "@/components/sections/RecommendedBySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import GallerySection from "@/components/sections/GallerySection";
-import HighlightCardsSection from "@/components/sections/HighlightCardsSection";
 import CTASection from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
@@ -36,12 +38,14 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <HighlightCardsSection />
       <AboutUsSection />
       <AboutFounderSection />
+      <KilimanjaroHighlightsSection />
+      <MeruHighlightSection />
+      <SafariHighlightsSection />
+      <DayTripsHighlightsSection />
       <RecommendedBySection />
       <TestimonialsSection />
-      <GallerySection />
       <CTASection />
     </>
   );
