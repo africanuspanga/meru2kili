@@ -3,17 +3,28 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Clock, Mountain, Compass, Tent, Binoculars, Sunrise } from "lucide-react";
 
 export default function Footer() {
-  const quickLinks = [
+  const adventureLinks = [
+    { label: "Kilimanjaro Routes", href: "/kilimanjaro", icon: Mountain },
+    { label: "Mount Meru", href: "/meru", icon: Sunrise },
+    { label: "Tanzania Safaris", href: "/safaris", icon: Binoculars },
+    { label: "Day Trips", href: "/day-trips", icon: Compass },
+  ];
+
+  const companyLinks = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
-    { label: "Kilimanjaro Routes", href: "/kilimanjaro" },
-    { label: "Mount Meru", href: "/meru" },
-    { label: "Safaris", href: "/safaris" },
-    { label: "Day Trips", href: "/day-trips" },
     { label: "Contact", href: "/contact" },
+  ];
+
+  const kilimanjaroRoutes = [
+    { label: "Machame Route", href: "/kilimanjaro/kilimanjaro---machame-route/" },
+    { label: "Marangu Route", href: "/kilimanjaro/kilimanjaro---marangu-route/" },
+    { label: "Lemosho Route", href: "/kilimanjaro/kilimanjaro---lemosho-route-7-8-day/" },
+    { label: "Rongai Route", href: "/kilimanjaro/kilimanjaro---rongai-route-5-day/" },
+    { label: "Umbwe Route", href: "/kilimanjaro/kilimanjaro---umbwe-route/" },
   ];
 
   const paymentLogos = [
@@ -29,38 +40,111 @@ export default function Footer() {
 
   return (
     <footer className="bg-brand-slate text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-1"
+            className="lg:col-span-4"
           >
             <Image
               src="/Meru2Kili footer logo.png"
               alt="Meru2Kili"
               width={180}
               height={60}
-              className="h-14 w-auto object-contain mb-4"
+              className="h-14 w-auto object-contain mb-5"
             />
-            <p className="text-sm text-gray-300 leading-relaxed">
+            <p className="text-sm text-gray-300 leading-relaxed mb-6">
               Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris and day trips. Your adventure starts here.
             </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://wa.me/255755873991"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-green transition-colors"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle size={18} />
+              </a>
+              <a
+                href="mailto:remidmmasy@gmail.com"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-green transition-colors"
+                aria-label="Email"
+              >
+                <Mail size={18} />
+              </a>
+              <a
+                href="tel:+255787873991"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-green transition-colors"
+                aria-label="Phone"
+              >
+                <Phone size={18} />
+              </a>
+            </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Adventures */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            className="lg:col-span-2"
           >
-            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
+            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Adventures</h4>
+            <ul className="space-y-2.5">
+              {adventureLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-brand-gold transition-colors"
+                  >
+                    <link.icon size={14} className="shrink-0" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Company */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="lg:col-span-2"
+          >
+            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Company</h4>
+            <ul className="space-y-2.5">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-gray-300 hover:text-brand-gold transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Kili Routes */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="lg:col-span-2"
+          >
+            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Kili Routes</h4>
+            <ul className="space-y-2.5">
+              {kilimanjaroRoutes.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -78,9 +162,10 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="lg:col-span-2"
           >
-            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Contact Us</h4>
+            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Contact</h4>
             <ul className="space-y-3">
               <li>
                 <a
@@ -107,26 +192,36 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-2 text-sm text-gray-300 hover:text-brand-gold transition-colors"
                 >
-                  <Phone size={16} className="mt-0.5 shrink-0" />
-                  WhatsApp: +255 755 873 991
+                  <MessageCircle size={16} className="mt-0.5 shrink-0" />
+                  +255 755 873 991
                 </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-gray-300">
                 <MapPin size={16} className="mt-0.5 shrink-0" />
                 Arusha, Tanzania
               </li>
+              <li className="flex items-start gap-2 text-sm text-gray-300">
+                <Clock size={16} className="mt-0.5 shrink-0" />
+                Response within 24h
+              </li>
             </ul>
           </motion.div>
+        </div>
 
-          {/* Payment Methods */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h4 className="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">We Accept</h4>
-            <div className="flex flex-wrap gap-2">
+        {/* Payment Methods */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 pt-8 border-t border-white/10"
+        >
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <p className="text-xs text-gray-400 text-center lg:text-left">
+              © {new Date().getFullYear()} Meru2Kili Hiking & Safaris. All rights reserved.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <span className="text-xs text-gray-400 mr-2">We accept:</span>
               {paymentLogos.map((logo) => (
                 <div
                   key={logo.alt}
@@ -142,14 +237,8 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-          </motion.div>
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-white/10 text-center">
-          <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Meru2Kili Hiking & Safaris. All rights reserved.
-          </p>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );

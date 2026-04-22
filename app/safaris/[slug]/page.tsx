@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getSafariPackages } from "@/lib/loaders";
@@ -8,16 +9,39 @@ export async function generateStaticParams() {
   return packages.map((p) => ({ slug: p.slug }));
 }
 
-export default function SafariDetailPage({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
   const packages = getSafariPackages();
-  const pkg = packages.find((p) => p.slug === params.slug);
+  const pkg = packages.find((p) => p.slug === slug);
+  if (!pkg) return {};
+
+  return {
+    title: `${pkg.title} | Tanzania Safari`,
+    description: `${pkg.description} Book your Northern Circuit safari with Meru2Kili.`,
+    alternates: {
+      canonical: `https://www.meru2kili.com/safaris/${slug}/`,
+    },
+    openGraph: {
+      title: `${pkg.title} | Tanzania Safari`,
+      description: pkg.description,
+      url: `https://www.meru2kili.com/safaris/${slug}/`,
+      type: "article",
+      images: pkg.image ? [{ url: `https://www.meru2kili.com${pkg.image}` }] : undefined,
+    },
+  };
+}
+
+export default async function SafariDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const packages = getSafariPackages();
+  const pkg = packages.find((p) => p.slug === slug);
   if (!pkg) return notFound();
 
   return (
     <div>
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <Image
-          src={pkg.image || "/Kilimanjaro National Park.jpeg"}
+          src={pkg.image || "/safari-images/rhino-ngorongoro.jpg"}
           alt={pkg.title}
           fill
           className="object-cover"

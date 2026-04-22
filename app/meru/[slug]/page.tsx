@@ -1,39 +1,39 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getKilimanjaroRoutes } from "@/lib/loaders";
-import RouteDetailClient from "@/components/shared/RouteDetailClient";
+import { getMeruRoutes } from "@/lib/loaders";
+import MeruDetailClient from "@/components/shared/MeruDetailClient";
 
 export async function generateStaticParams() {
-  const routes = getKilimanjaroRoutes();
+  const routes = getMeruRoutes();
   return routes.map((r) => ({ slug: r.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const routes = getKilimanjaroRoutes();
+  const routes = getMeruRoutes();
   const route = routes.find((r) => r.slug === slug);
   if (!route) return {};
 
   return {
-    title: `${route.title} | Kilimanjaro Climb`,
-    description: `${route.description} Duration: ${route.summary?.length}. Difficulty: ${route.summary?.difficulty}. Book your Kilimanjaro climb with Meru2Kili.`,
+    title: `${route.title} | Mount Meru Trek`,
+    description: `${route.description} Duration: ${route.summary?.length}. Difficulty: ${route.summary?.difficulty}. Book your Mount Meru trek with Meru2Kili.`,
     alternates: {
-      canonical: `https://www.meru2kili.com/kilimanjaro/${slug}/`,
+      canonical: `https://www.meru2kili.com/meru/${slug}/`,
     },
     openGraph: {
-      title: `${route.title} | Kilimanjaro Climb`,
+      title: `${route.title} | Mount Meru Trek`,
       description: route.description,
-      url: `https://www.meru2kili.com/kilimanjaro/${slug}/`,
+      url: `https://www.meru2kili.com/meru/${slug}/`,
       type: "article",
       images: route.image ? [{ url: `https://www.meru2kili.com${route.image}` }] : undefined,
     },
   };
 }
 
-export default async function KilimanjaroRoutePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function MeruRoutePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const routes = getKilimanjaroRoutes();
+  const routes = getMeruRoutes();
   const route = routes.find((r) => r.slug === slug);
   if (!route) return notFound();
 
@@ -41,7 +41,7 @@ export default async function KilimanjaroRoutePage({ params }: { params: Promise
     <div>
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <Image
-          src={route.image || "/Kilimanjaro images/kilimanjaro-uhuru-peak.jpg"}
+          src={route.image || "/meru-images/meru-hero.jpg"}
           alt={route.title}
           fill
           className="object-cover"
@@ -60,7 +60,7 @@ export default async function KilimanjaroRoutePage({ params }: { params: Promise
         </div>
       </section>
 
-      <RouteDetailClient route={route} category="kilimanjaro" />
+      <MeruDetailClient route={route} />
     </div>
   );
 }

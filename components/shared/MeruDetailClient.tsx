@@ -1,34 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import BookingModal from "@/components/shared/BookingModal";
 import { TripPackage } from "@/lib/types";
-import { Check, X, Clock, MapPin, Users, Binoculars, CalendarDays, Bed, Utensils, ChevronDown, ChevronUp } from "lucide-react";
+import { Clock, Mountain, Tent, Check, Info, CalendarDays, MapPin, Sunrise } from "lucide-react";
 
-interface SafariDetailClientProps {
-  pkg: TripPackage;
+interface MeruDetailClientProps {
+  route: TripPackage;
 }
 
-export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
+export default function MeruDetailClient({ route }: MeruDetailClientProps) {
   const [bookingOpen, setBookingOpen] = useState(false);
-  const [expandedDay, setExpandedDay] = useState<number | null>(0);
-
-  const numDays = pkg.safariItinerary?.length || 0;
+  const [activeDay, setActiveDay] = useState(0);
 
   return (
     <section className="py-12 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Summary Cards */}
             <AnimatedSection>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
                 {[
-                  { icon: CalendarDays, label: "Duration", value: `${numDays} Days` },
-                  { icon: MapPin, label: "Region", value: "Northern Circuit" },
-                  { icon: Users, label: "Group Size", value: "Flexible" },
-                  { icon: Binoculars, label: "Focus", value: "Big 5 & More" },
+                  { icon: Clock, label: "Duration", value: route.summary?.length || "N/A" },
+                  { icon: Tent, label: "Type", value: route.summary?.type || "N/A" },
+                  { icon: Mountain, label: "Difficulty", value: route.summary?.difficulty || "N/A" },
+                  { icon: Sunrise, label: "Peak", value: "4,566m" },
                 ].map((item) => (
                   <div key={item.label} className="bg-gray-50 rounded-xl p-4 text-center">
                     <item.icon size={20} className="mx-auto text-brand-green mb-2" />
@@ -39,22 +39,30 @@ export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
               </div>
             </AnimatedSection>
 
-            {/* Day-by-Day Itinerary */}
-            {pkg.safariItinerary && pkg.safariItinerary.length > 0 && (
+            {/* Description */}
+            {route.description && (
+              <AnimatedSection className="mb-10">
+                <p className="text-gray-600 leading-relaxed text-base">{route.description}</p>
+              </AnimatedSection>
+            )}
+
+            {/* Itinerary */}
+            {route.itinerary && route.itinerary.length > 0 && (
               <AnimatedSection>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <Clock size={24} className="text-brand-green" />
+                  <CalendarDays size={24} className="text-brand-green" />
                   Day-by-Day Itinerary
                 </h2>
 
                 <div className="space-y-4">
-                  {pkg.safariItinerary.map((day, i) => (
-                    <div
-                      key={i}
+                  {route.itinerary.map((day, i) => (
+                    <motion.div
+                      key={`${day.day}-${i}`}
+                      initial={false}
                       className="border border-gray-200 rounded-xl overflow-hidden"
                     >
                       <button
-                        onClick={() => setExpandedDay(expandedDay === i ? null : i)}
+                        onClick={() => setActiveDay(activeDay === i ? -1 : i)}
                         className="w-full flex items-center gap-4 p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
                       >
                         <span className="w-10 h-10 rounded-full bg-brand-green text-white flex items-center justify-center text-sm font-bold shrink-0">
@@ -62,56 +70,43 @@ export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
                         </span>
                         <div className="flex-1 min-w-0">
                           <p className="font-bold text-gray-900 text-sm sm:text-base">{day.title}</p>
-                          {(day.accommodation || day.mealPlan) && (
-                            <div className="flex flex-wrap gap-3 mt-1">
-                              {day.accommodation && (
-                                <span className="text-xs text-gray-500 flex items-center gap-1">
-                                  <Bed size={12} /> {day.accommodation.replace(/\*\*/g, "")}
-                                </span>
-                              )}
-                              {day.mealPlan && (
-                                <span className="text-xs text-gray-500 flex items-center gap-1">
-                                  <Utensils size={12} /> {day.mealPlan}
-                                </span>
-                              )}
-                            </div>
-                          )}
+                          <div className="flex flex-wrap gap-3 mt-1">
+                            {day.trekkingTime && (
+                              <span className="text-xs text-gray-500 flex items-center gap-1">
+                                <Clock size={12} /> {day.trekkingTime}
+                              </span>
+                            )}
+                            {day.climaticZone && (
+                              <span className="text-xs text-gray-500 flex items-center gap-1">
+                                <Mountain size={12} /> {day.climaticZone}
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        {expandedDay === i ? (
-                          <ChevronUp size={18} className="text-gray-400 shrink-0" />
-                        ) : (
-                          <ChevronDown size={18} className="text-gray-400 shrink-0" />
-                        )}
                       </button>
-
-                      <div className={`p-4 ${expandedDay === i ? "block" : "hidden sm:block"}`}>
-                        <div className="space-y-3">
-                          {day.activities.map((activity, ai) => (
-                            <div key={ai} className="flex items-start gap-3">
-                              <div className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 shrink-0" />
-                              <div>
-                                <span className="font-semibold text-gray-900 text-sm">{activity.label}:</span>{" "}
-                                <span className="text-sm text-gray-600">{activity.value}</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
+                      <div className={`p-4 ${activeDay === i ? "block" : "hidden sm:block"}`}>
+                        <p className="text-sm text-gray-600 leading-relaxed">{day.description}</p>
+                        {day.altitudeGained && (
+                          <p className="text-xs text-brand-green font-medium mt-2">
+                            Altitude: {day.altitudeGained}
+                          </p>
+                        )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </AnimatedSection>
             )}
 
             {/* Inclusions */}
-            {pkg.inclusions && pkg.inclusions.length > 0 && (
+            {route.inclusions && route.inclusions.length > 0 && (
               <AnimatedSection className="mt-10">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                   <Check size={24} className="text-brand-green" />
                   What&apos;s Included
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {pkg.inclusions.map((item, i) => (
+                  {route.inclusions.map((item, i) => (
                     <div key={i} className="flex items-start gap-2 p-3 bg-green-50 rounded-lg">
                       <Check size={16} className="text-green-600 mt-0.5 shrink-0" />
                       <span className="text-sm text-gray-700">{item}</span>
@@ -121,19 +116,19 @@ export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
               </AnimatedSection>
             )}
 
-            {/* Exclusions */}
-            {pkg.exclusions && pkg.exclusions.length > 0 && (
+            {/* Notes */}
+            {route.notes && route.notes.length > 0 && (
               <AnimatedSection className="mt-10">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <X size={24} className="text-red-400" />
-                  Not Included
+                  <Info size={24} className="text-brand-gold" />
+                  Important Notes
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {pkg.exclusions.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2 p-3 bg-red-50 rounded-lg">
-                      <X size={16} className="text-red-500 mt-0.5 shrink-0" />
-                      <span className="text-sm text-gray-700">{item}</span>
-                    </div>
+                <div className="bg-amber-50 border border-amber-100 rounded-xl p-6 space-y-3">
+                  {route.notes.map((note, i) => (
+                    <p key={i} className="text-sm text-amber-800 flex items-start gap-2">
+                      <Info size={14} className="mt-0.5 shrink-0" />
+                      {note}
+                    </p>
                   ))}
                 </div>
               </AnimatedSection>
@@ -145,9 +140,9 @@ export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
             <div className="sticky top-24 space-y-6">
               <AnimatedSection>
                 <div className="bg-brand-green rounded-2xl p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">Book This Safari</h3>
+                  <h3 className="text-xl font-bold mb-2">Ready to Book?</h3>
                   <p className="text-sm text-white/80 mb-6">
-                    Secure your spot on this incredible {numDays}-day Northern Circuit safari adventure.
+                    Reserve your spot on the {route.title} and experience Tanzania&apos;s second highest peak.
                   </p>
                   <button
                     onClick={() => setBookingOpen(true)}
@@ -168,14 +163,15 @@ export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
 
               <AnimatedSection delay={0.1}>
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <h4 className="font-bold text-gray-900 mb-4">Trip Highlights</h4>
+                  <h4 className="font-bold text-gray-900 mb-4">Why Choose Us</h4>
                   <ul className="space-y-3">
                     {[
-                      "Professional English-speaking guide",
-                      "4WD Land Cruiser with pop-up roof",
-                      "All park entrance fees included",
-                      "Full board meals & accommodation",
-                      "2.5L mineral water per person/day",
+                      "Experienced certified guides",
+                      "Armed ranger included",
+                      "Quality hut accommodation",
+                      "All meals provided",
+                      "Park fees handled",
+                      "Pre-climb briefing",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
                         <Check size={14} className="text-brand-green shrink-0" />
@@ -193,7 +189,7 @@ export default function SafariDetailClient({ pkg }: SafariDetailClientProps) {
       <BookingModal
         isOpen={bookingOpen}
         onClose={() => setBookingOpen(false)}
-        tripName={pkg.title}
+        tripName={route.title}
       />
     </section>
   );

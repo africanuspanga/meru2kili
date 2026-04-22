@@ -12,9 +12,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Meru2Kili Hiking & Safaris | Conquer Africa's Highest Peaks",
+  title: {
+    default: "Meru2Kili Hiking & Safaris | Kilimanjaro, Meru & Tanzania Safaris",
+    template: "%s | Meru2Kili",
+  },
   description:
-    "Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris and day trips. 20+ years of experience with Remid Mmasy.",
+    "Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris and day trips. 20+ years of experience with Remid Mmasy. Book your adventure today.",
   keywords: [
     "Kilimanjaro climb",
     "Mount Meru",
@@ -23,12 +26,58 @@ export const metadata: Metadata = {
     "Arusha day trips",
     "Remid Mmasy",
     "Meru2Kili",
+    "Kilimanjaro trekking",
+    "Mount Meru climbing",
+    "Northern Circuit safari",
+    "Serengeti safari",
+    "Ngorongoro Crater",
+    "Tanzania adventure",
+    "Africa highest peak",
   ],
+  authors: [{ name: "Meru2Kili Hiking & Safaris" }],
+  creator: "Meru2Kili Hiking & Safaris",
+  publisher: "Meru2Kili Hiking & Safaris",
+  metadataBase: new URL("https://www.meru2kili.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Meru2Kili Hiking & Safaris",
+    title: "Meru2Kili Hiking & Safaris | Conquer Africa's Highest Peaks",
     description:
-      "Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris.",
+      "Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris and day trips.",
     type: "website",
+    url: "https://www.meru2kili.com",
+    siteName: "Meru2Kili Hiking & Safaris",
+    locale: "en_US",
+    images: [
+      {
+        url: "/Meru2Kili Hero Image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mount Kilimanjaro with Meru2Kili Hiking & Safaris",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meru2Kili Hiking & Safaris | Kilimanjaro, Meru & Tanzania Safaris",
+    description:
+      "Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris and day trips.",
+    images: ["/Meru2Kili Hero Image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
   },
 };
 

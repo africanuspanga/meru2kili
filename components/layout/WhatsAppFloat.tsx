@@ -17,13 +17,13 @@ export default function WhatsAppFloat() {
     >
       <div className="relative">
         <div className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20" />
-        <div className="relative w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center border-2 border-green-500 hover:scale-110 transition-transform">
+        <div className="relative w-16 h-16 rounded-full shadow-2xl flex items-center justify-center overflow-hidden hover:scale-110 transition-transform">
           <Image
             src="/whatsapp.png"
             alt="WhatsApp"
-            width={32}
-            height={32}
-            className="w-8 h-8 object-contain"
+            fill
+            className="object-cover"
+            sizes="64px"
           />
         </div>
         <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">

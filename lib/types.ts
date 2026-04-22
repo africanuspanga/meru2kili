@@ -13,6 +13,14 @@ export interface ItineraryDay {
   description: string;
 }
 
+export interface SafariDay {
+  day: string;
+  title: string;
+  activities: { label: string; value: string }[];
+  accommodation?: string;
+  mealPlan?: string;
+}
+
 export interface TripPackage {
   slug: string;
   title: string;
@@ -20,9 +28,11 @@ export interface TripPackage {
   summary?: RouteSummary;
   description: string;
   itinerary?: ItineraryDay[];
+  safariItinerary?: SafariDay[];
   inclusions?: string[];
   exclusions?: string[];
   notes?: string[];
+  highlights?: string[];
   image?: string;
   priceNote?: string;
 }

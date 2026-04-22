@@ -63,7 +63,7 @@ export default function AboutFounderSection() {
 
           <AnimatedSection className="order-1 lg:order-2">
             <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto">
                 <Image
                   src="/About Founder.jpeg"
                   alt="Remid Mmasy - Founder of Meru2Kili"

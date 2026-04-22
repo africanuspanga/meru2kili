@@ -32,19 +32,19 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-md py-2"
-            : "bg-transparent py-3"
+            ? "bg-white/95 backdrop-blur-md shadow-md py-3"
+            : "bg-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Link href="/" className="relative flex items-center gap-2 shrink-0 h-14 sm:h-16 w-[180px] sm:w-[220px]">
               <Image
                 src="/Meru2Kili nav bar logo.png"
                 alt="Meru2Kili"
-                width={scrolled ? 140 : 160}
-                height={48}
-                className="h-10 sm:h-12 w-auto object-contain transition-all"
+                fill
+                className="object-contain transition-all"
+                sizes="220px"
                 priority
               />
             </Link>
@@ -91,6 +91,17 @@ export default function Navbar() {
                         )}
                       </AnimatePresence>
                     </div>
+                  ) : item.label === "CONTACT" ? (
+                    <Link
+                      href={item.href}
+                      className={`ml-2 px-5 py-2.5 text-sm font-bold rounded-xl transition-all ${
+                        scrolled
+                          ? "bg-brand-gold text-brand-green hover:bg-brand-gold-dark shadow-md"
+                          : "bg-brand-gold/90 text-brand-green hover:bg-brand-gold shadow-lg"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
                   ) : (
                     <Link
                       href={item.href}
@@ -140,13 +151,15 @@ export default function Navbar() {
               className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-2xl"
             >
               <div className="flex items-center justify-between p-4 border-b">
-                <Image
-                  src="/Meru2Kili nav bar logo.png"
-                  alt="Meru2Kili"
-                  width={140}
-                  height={40}
-                  className="h-10 w-auto object-contain"
-                />
+                <div className="relative h-14 w-[160px]">
+                  <Image
+                    src="/Meru2Kili nav bar logo.png"
+                    alt="Meru2Kili"
+                    fill
+                    className="object-contain"
+                    sizes="160px"
+                  />
+                </div>
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="p-2 text-brand-green rounded-lg hover:bg-brand-green/10"
@@ -179,6 +192,14 @@ export default function Navbar() {
                           </Link>
                         ))}
                       </div>
+                    ) : item.label === "CONTACT" ? (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="block px-4 py-3 text-sm font-bold text-brand-green uppercase tracking-wide rounded-xl bg-brand-gold text-center mt-2"
+                      >
+                        {item.label}
+                      </Link>
                     ) : (
                       <Link
                         href={item.href}

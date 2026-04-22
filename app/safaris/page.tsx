@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getSafariPackages } from "@/lib/loaders";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import { Clock, MapPin, ArrowRight, Binoculars } from "lucide-react";
+import { Clock, MapPin, ArrowRight, Binoculars, CalendarDays, MessageCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Tanzania Safaris",
+  description:
+    "Explore Tanzania's legendary Northern Circuit — Serengeti, Ngorongoro Crater, Tarangire, and Lake Manyara. Expert-guided safaris with Meru2Kili.",
+  alternates: {
+    canonical: "https://www.meru2kili.com/safaris/",
+  },
+  openGraph: {
+    title: "Tanzania Safaris | Serengeti & Ngorongoro | Meru2Kili",
+    description:
+      "Explore Tanzania's legendary Northern Circuit — Serengeti, Ngorongoro Crater, Tarangire, and Lake Manyara.",
+    url: "https://www.meru2kili.com/safaris/",
+    type: "website",
+  },
+};
 
 export default function SafarisPage() {
   const packages = getSafariPackages();
@@ -11,7 +28,7 @@ export default function SafarisPage() {
     <div>
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/Kilimanjaro National Park.jpeg"
+          src="/safari-images/rhino-ngorongoro.jpg"
           alt="Tanzania Safari"
           fill
           className="object-cover"
@@ -45,14 +62,14 @@ export default function SafarisPage() {
                 <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
                   <div className="relative h-56 overflow-hidden">
                     <Image
-                      src={pkg.image || "/Kilimanjaro National Park.jpeg"}
+                      src={pkg.image || "/safari-images/rhino-ngorongoro.jpg"}
                       alt={pkg.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <div className="absolute top-3 right-3 bg-brand-gold text-brand-green text-xs font-bold px-3 py-1 rounded-full">
-                      Safari
+                      {pkg.safariItinerary?.length || 0} Days
                     </div>
                   </div>
 
@@ -61,8 +78,8 @@ export default function SafarisPage() {
 
                     <div className="flex flex-wrap gap-4 mb-4">
                       <div className="flex items-center gap-1.5 text-sm text-gray-500">
-                        <Clock size={14} className="text-brand-green" />
-                        Multi-day
+                        <CalendarDays size={14} className="text-brand-green" />
+                        {pkg.safariItinerary?.length || 0} Days
                       </div>
                       <div className="flex items-center gap-1.5 text-sm text-gray-500">
                         <MapPin size={14} className="text-brand-green" />
@@ -74,15 +91,15 @@ export default function SafarisPage() {
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-500 mb-6 line-clamp-3 flex-1">
-                      Experience Tanzania&apos;s world-famous wildlife on this carefully crafted safari itinerary with professional guides and comfortable accommodation.
+                    <p className="text-sm text-gray-600 mb-6 line-clamp-3 flex-1 leading-relaxed">
+                      {pkg.description || "Experience Tanzania's world-famous wildlife on this carefully crafted safari itinerary with professional guides and comfortable accommodation."}
                     </p>
 
                     <Link
-                      href={`/safaris/${pkg.slug}`}
+                      href={`/safaris/${pkg.slug}/`}
                       className="inline-flex items-center justify-center gap-2 w-full py-3 bg-brand-green text-white font-semibold rounded-xl hover:bg-brand-green-light transition-colors"
                     >
-                      View Details
+                      View Full Itinerary
                       <ArrowRight size={16} />
                     </Link>
                   </div>
@@ -90,6 +107,33 @@ export default function SafarisPage() {
               </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 lg:py-28 bg-brand-green relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-brand-gold rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-gold rounded-full blur-3xl translate-x-1/2 translate-y/2" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              Ready to Go on <span className="text-brand-gold">Safari?</span>
+            </h2>
+            <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto">
+              Get a personalized quote, check availability, or ask us anything about your dream Tanzania safari.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.15}>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-10 py-4 bg-brand-gold text-brand-green font-bold rounded-xl hover:bg-brand-gold-dark transition-all shadow-lg text-base"
+            >
+              <MessageCircle size={20} />
+              Contact Us
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </div>
