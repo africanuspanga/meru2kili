@@ -17,14 +17,42 @@ export const metadata: Metadata = {
       "Choose from 7 iconic routes to the summit of Mount Kilimanjaro. Expert guides, full support, and 20+ years of experience.",
     url: "https://www.meru2kili.com/kilimanjaro/",
     type: "website",
+    images: [
+      {
+        url: "https://www.meru2kili.com/Uhuru Peak 1.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Kilimanjaro Climbing Routes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kilimanjaro Climbing Routes | Meru2Kili",
+    description:
+      "Choose from 7 iconic routes to the summit of Mount Kilimanjaro. Expert guides, full support, and 20+ years of experience.",
+    images: ["https://www.meru2kili.com/Uhuru Peak 1.jpeg"],
   },
 };
 
 export default function KilimanjaroPage() {
   const routes = getKilimanjaroRoutes();
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+      { "@type": "ListItem", position: 2, name: "Kilimanjaro", item: "https://www.meru2kili.com/kilimanjaro/" },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image

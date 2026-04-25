@@ -17,12 +17,40 @@ export const metadata: Metadata = {
       "Learn about Meru2Kili Hiking & Safaris, founded by Remid Mmasy with 20+ years of experience guiding climbs of Kilimanjaro, Meru, and Tanzania safaris.",
     url: "https://www.meru2kili.com/about/",
     type: "website",
+    images: [
+      {
+        url: "https://www.meru2kili.com/Kilimanjaro National Park.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "About Meru2Kili Hiking & Safaris",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Meru2Kili | 20+ Years of Guiding Experience",
+    description:
+      "Learn about Meru2Kili Hiking & Safaris, founded by Remid Mmasy with 20+ years of experience guiding climbs of Kilimanjaro, Meru, and Tanzania safaris.",
+    images: ["https://www.meru2kili.com/Kilimanjaro National Park.jpeg"],
   },
 };
 
 export default function AboutPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+      { "@type": "ListItem", position: 2, name: "About Us", item: "https://www.meru2kili.com/about/" },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image

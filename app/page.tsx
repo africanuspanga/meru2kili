@@ -35,8 +35,36 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    name: "Meru2Kili Hiking & Safaris",
+    description:
+      "Expert-guided climbs of Mount Kilimanjaro and Mount Meru, plus unforgettable Tanzania safaris and day trips. 20+ years of experience with Remid Mmasy.",
+    url: "https://www.meru2kili.com",
+    telephone: "+255-787-873-991",
+    email: "remidmmasy@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Arusha",
+      addressCountry: "TZ",
+    },
+    founder: {
+      "@type": "Person",
+      name: "Remid Mmasy",
+    },
+    sameAs: [
+      "https://www.tripadvisor.com",
+      "https://wa.me/255755873991",
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <HeroSection />
       <AboutUsSection />
       <AboutFounderSection />

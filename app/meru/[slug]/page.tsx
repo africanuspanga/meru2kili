@@ -37,8 +37,37 @@ export default async function MeruRoutePage({ params }: { params: Promise<{ slug
   const route = routes.find((r) => r.slug === slug);
   if (!route) return notFound();
 
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      name: route.title,
+      description: route.description,
+      image: route.image ? `https://www.meru2kili.com${route.image}` : undefined,
+      url: `https://www.meru2kili.com/meru/${slug}/`,
+      touristType: "Adventure travel, Mountain climbing",
+      additionalProperty: [
+        { "@type": "PropertyValue", name: "Duration", value: route.summary?.length },
+        { "@type": "PropertyValue", name: "Difficulty", value: route.summary?.difficulty },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+        { "@type": "ListItem", position: 2, name: "Mount Meru", item: "https://www.meru2kili.com/meru/" },
+        { "@type": "ListItem", position: 3, name: route.title, item: `https://www.meru2kili.com/meru/${slug}/` },
+      ],
+    },
+  ];
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <Image
           src={route.image || "/meru-images/meru-hero.jpg"}

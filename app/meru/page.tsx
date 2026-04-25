@@ -18,14 +18,42 @@ export const metadata: Metadata = {
       "Climb Mount Meru, Tanzania's second highest peak at 4,566m. Scenic 2-day trek or full 3-day summit route through Arusha National Park.",
     url: "https://www.meru2kili.com/meru/",
     type: "website",
+    images: [
+      {
+        url: "https://www.meru2kili.com/meru-images/meru-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mount Meru Climbing",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mount Meru Climbing | 2 & 3 Day Treks | Meru2Kili",
+    description:
+      "Climb Mount Meru, Tanzania's second highest peak at 4,566m. Scenic 2-day trek or full 3-day summit route through Arusha National Park.",
+    images: ["https://www.meru2kili.com/meru-images/meru-hero.jpg"],
   },
 };
 
 export default function MeruPage() {
   const routes = getMeruRoutes();
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+      { "@type": "ListItem", position: 2, name: "Mount Meru", item: "https://www.meru2kili.com/meru/" },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero */}
       <section className="relative h-[65vh] min-h-[450px] flex items-center justify-center overflow-hidden">
         <Image

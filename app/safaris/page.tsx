@@ -18,14 +18,42 @@ export const metadata: Metadata = {
       "Explore Tanzania's legendary Northern Circuit — Serengeti, Ngorongoro Crater, Tarangire, and Lake Manyara.",
     url: "https://www.meru2kili.com/safaris/",
     type: "website",
+    images: [
+      {
+        url: "https://www.meru2kili.com/safari-images/rhino-ngorongoro.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Tanzania Safaris",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tanzania Safaris | Serengeti & Ngorongoro | Meru2Kili",
+    description:
+      "Explore Tanzania's legendary Northern Circuit — Serengeti, Ngorongoro Crater, Tarangire, and Lake Manyara.",
+    images: ["https://www.meru2kili.com/safari-images/rhino-ngorongoro.jpg"],
   },
 };
 
 export default function SafarisPage() {
   const packages = getSafariPackages();
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+      { "@type": "ListItem", position: 2, name: "Safaris", item: "https://www.meru2kili.com/safaris/" },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
           src="/safari-images/rhino-ngorongoro.jpg"

@@ -37,8 +37,36 @@ export default async function SafariDetailPage({ params }: { params: Promise<{ s
   const pkg = packages.find((p) => p.slug === slug);
   if (!pkg) return notFound();
 
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      name: pkg.title,
+      description: pkg.description,
+      image: pkg.image ? `https://www.meru2kili.com${pkg.image}` : undefined,
+      url: `https://www.meru2kili.com/safaris/${slug}/`,
+      touristType: "Safari, Wildlife watching",
+      additionalProperty: [
+        { "@type": "PropertyValue", name: "Duration", value: `${pkg.safariItinerary?.length || 0} days` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+        { "@type": "ListItem", position: 2, name: "Safaris", item: "https://www.meru2kili.com/safaris/" },
+        { "@type": "ListItem", position: 3, name: pkg.title, item: `https://www.meru2kili.com/safaris/${slug}/` },
+      ],
+    },
+  ];
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <Image
           src={pkg.image || "/safari-images/rhino-ngorongoro.jpg"}

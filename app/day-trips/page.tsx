@@ -95,12 +95,40 @@ export const metadata: Metadata = {
       "Discover hidden gems around Mount Kilimanjaro — waterfalls, hot springs, coffee tours, and authentic village experiences.",
     url: "https://www.meru2kili.com/day-trips/",
     type: "website",
+    images: [
+      {
+        url: "https://www.meru2kili.com/day trips images/materuni day trip.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Day Trips Around Kilimanjaro",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Day Trips Around Kilimanjaro | Meru2Kili",
+    description:
+      "Discover hidden gems around Mount Kilimanjaro — waterfalls, hot springs, coffee tours, and authentic village experiences.",
+    images: ["https://www.meru2kili.com/day trips images/materuni day trip.jpeg"],
   },
 };
 
 export default function DayTripsPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.meru2kili.com/" },
+      { "@type": "ListItem", position: 2, name: "Day Trips", item: "https://www.meru2kili.com/day-trips/" },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
           src="/day trips images/materuni day trip.jpeg"
