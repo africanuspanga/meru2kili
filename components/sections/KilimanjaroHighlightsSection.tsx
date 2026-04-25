@@ -122,7 +122,7 @@ export default function KilimanjaroHighlightsSection() {
             href="/kilimanjaro"
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-brand-green text-white font-bold rounded-xl hover:bg-brand-green-light transition-colors shadow-lg text-sm sm:text-base"
           >
-            View All 6 Routes
+            View All 8 Routes
             <ArrowRight size={18} />
           </Link>
         </AnimatedSection>

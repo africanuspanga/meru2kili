@@ -9,7 +9,7 @@ const highlights = [
   {
     slug: "/kilimanjaro",
     title: "Mount Kilimanjaro",
-    subtitle: "6 Iconic Routes",
+    subtitle: "8 Iconic Routes",
     description:
       "Climb Africa's highest peak at 5,895m. Choose from Machame, Marangu, Lemosho, Rongai, and Umbwe routes with expert guides and full support.",
     image: "/Kilimanjaro images/kilimanjaro-uhuru-peak.jpg",

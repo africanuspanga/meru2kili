@@ -23,6 +23,8 @@ export default function Footer() {
     { label: "Machame Route", href: "/kilimanjaro/kilimanjaro---machame-route/" },
     { label: "Marangu Route", href: "/kilimanjaro/kilimanjaro---marangu-route/" },
     { label: "Lemosho Route", href: "/kilimanjaro/kilimanjaro---lemosho-route-7-8-day/" },
+    { label: "Londorosi Route", href: "/kilimanjaro/kilimanjaro---londorosi-route/" },
+    { label: "Northern Circuit", href: "/kilimanjaro/kilimanjaro---northern-circuit-route/" },
     { label: "Rongai Route", href: "/kilimanjaro/kilimanjaro---rongai-route-5-day/" },
     { label: "Umbwe Route", href: "/kilimanjaro/kilimanjaro---umbwe-route/" },
   ];
@@ -199,6 +201,10 @@ export default function Footer() {
               <li className="flex items-start gap-2 text-sm text-gray-300">
                 <MapPin size={16} className="mt-0.5 shrink-0" />
                 Arusha, Tanzania
+              </li>
+              <li className="flex items-start gap-2 text-sm text-gray-300">
+                <MapPin size={16} className="mt-0.5 shrink-0" />
+                P.O. Box 10503 Arusha, Tanzania
               </li>
               <li className="flex items-start gap-2 text-sm text-gray-300">
                 <Clock size={16} className="mt-0.5 shrink-0" />

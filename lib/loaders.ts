@@ -79,6 +79,10 @@ const routeDescriptions: Record<string, string> = {
     "The Rongai Route from the north provides a more gradual ascent and drier weather conditions. This extended 6 to 7-day version includes extra time for acclimatization and exploration of the majestic Mawenzi Peak.",
   "kilimanjaro---umbwe-route":
     "The Umbwe Route is the shortest, steepest, and most challenging route on Kilimanjaro. It is ideal for experienced trekkers seeking a tough, direct path to the summit with dramatic scenery and solitude.",
+  "kilimanjaro---londorosi-route":
+    "The Londorosi Route follows the same spectacular western approach as Lemosho, starting at Londorosi Gate. It traverses lush rainforest, crosses the stunning Shira Plateau, and offers excellent acclimatization with some of the highest summit success rates on Kilimanjaro.",
+  "kilimanjaro---northern-circuit-route":
+    "The Northern Circuit is the longest and newest route on Kilimanjaro, offering the highest summit success rate due to exceptional acclimatization. It circles the remote northern slopes with 360° panoramic views and the least crowds of any trail.",
 };
 
 const routeImages: Record<string, string> = {
@@ -88,6 +92,8 @@ const routeImages: Record<string, string> = {
   "kilimanjaro---rongai-route-5-day": "/Kilimanjaro images/simba-camp.jpg",
   "kilimanjaro---rongai-route-6-7-day": "/Kilimanjaro images/rongai-gate-sign.jpg",
   "kilimanjaro---umbwe-route": "/Kilimanjaro images/barranco-camp.jpg",
+  "kilimanjaro---londorosi-route": "/Kilimanjaro images/shira-1-camp.jpg",
+  "kilimanjaro---northern-circuit-route": "/Kilimanjaro images/kilimanjaro-aerial-crater.jpg",
 };
 
 const meruDescriptions: Record<string, string> = {

@@ -91,6 +91,13 @@ export default function ContactForm() {
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
+                      <MapPin size={20} className="mt-0.5 shrink-0" />
+                      <div>
+                        <p className="text-sm text-white/60">P.O. Box</p>
+                        <p className="text-sm font-medium">10503 Arusha, Tanzania</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
                       <Clock size={20} className="mt-0.5 shrink-0" />
                       <div>
                         <p className="text-sm text-white/60">Response Time</p>
@@ -195,6 +202,8 @@ export default function ContactForm() {
                             <option value="Kilimanjaro - Machame">Kilimanjaro - Machame Route</option>
                             <option value="Kilimanjaro - Marangu">Kilimanjaro - Marangu Route</option>
                             <option value="Kilimanjaro - Lemosho">Kilimanjaro - Lemosho Route</option>
+                            <option value="Kilimanjaro - Londorosi">Kilimanjaro - Londorosi Route</option>
+                            <option value="Kilimanjaro - Northern Circuit">Kilimanjaro - Northern Circuit Route</option>
                             <option value="Kilimanjaro - Rongai">Kilimanjaro - Rongai Route</option>
                             <option value="Kilimanjaro - Umbwe">Kilimanjaro - Umbwe Route</option>
                             <option value="Mount Meru">Mount Meru</option>

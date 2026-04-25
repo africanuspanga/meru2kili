@@ -26,7 +26,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/About page.jpeg"
+          src="/Kilimanjaro National Park.jpeg"
           alt="About Meru2Kili"
           fill
           className="object-cover"
