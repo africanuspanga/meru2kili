@@ -8,7 +8,7 @@ import { ArrowRight, Mountain, Clock, BarChart3 } from "lucide-react";
 const routes = [
   {
     slug: "/kilimanjaro",
-    routeSlug: "kilimanjaro---marangu-route",
+    routeSlug: "marangu-route",
     title: "Marangu Route",
     subtitle: "The Coca-Cola Route",
     description:
@@ -20,7 +20,7 @@ const routes = [
   },
   {
     slug: "/kilimanjaro",
-    routeSlug: "kilimanjaro---machame-route",
+    routeSlug: "machame-route",
     title: "Machame Route",
     subtitle: "The Whiskey Route",
     description:
@@ -32,7 +32,7 @@ const routes = [
   },
   {
     slug: "/kilimanjaro",
-    routeSlug: "kilimanjaro---rongai-route-6-7-day",
+    routeSlug: "rongai-route-6-7-day",
     title: "Rongai Route",
     subtitle: "The Northern Approach",
     description:
@@ -122,7 +122,7 @@ export default function KilimanjaroHighlightsSection() {
             href="/kilimanjaro"
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-brand-green text-white font-bold rounded-xl hover:bg-brand-green-light transition-colors shadow-lg text-sm sm:text-base"
           >
-            View All 8 Routes
+            View All 7 Routes
             <ArrowRight size={18} />
           </Link>
         </AnimatedSection>

@@ -1,6 +1,6 @@
 # Kilimanjaro Mountain Routes
 
-## The Lemosho Route (Londorosi Gate)
+The Londorosi Route
 
 | Route summary   |                                       |
 | :-------------- | :------------------------------------ |

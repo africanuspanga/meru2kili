@@ -37,7 +37,7 @@ export default function AboutUsSection() {
             <div className="relative">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/About section.jpeg"
+                  src="/About page.jpeg"
                   alt="Meru2Kili team on the mountain"
                   fill
                   className="object-cover"

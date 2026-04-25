@@ -7,14 +7,14 @@ import KilimanjaroRoutesGrid from "@/components/shared/KilimanjaroRoutesGrid";
 export const metadata: Metadata = {
   title: "Kilimanjaro Routes",
   description:
-    "Choose from 8 iconic routes to the summit of Mount Kilimanjaro. Machame, Marangu, Lemosho, Rongai, Umbwe, Londorosi, and Northern Circuit routes with expert guides and full support.",
+    "Choose from 7 iconic routes to the summit of Mount Kilimanjaro. Machame, Marangu, Lemosho, Rongai, Umbwe, Londorosi, and Northern Circuit routes with expert guides and full support.",
   alternates: {
     canonical: "https://www.meru2kili.com/kilimanjaro/",
   },
   openGraph: {
     title: "Kilimanjaro Climbing Routes | Meru2Kili",
     description:
-      "Choose from 8 iconic routes to the summit of Mount Kilimanjaro. Expert guides, full support, and 20+ years of experience.",
+      "Choose from 7 iconic routes to the summit of Mount Kilimanjaro. Expert guides, full support, and 20+ years of experience.",
     url: "https://www.meru2kili.com/kilimanjaro/",
     type: "website",
   },
@@ -40,7 +40,7 @@ export default function KilimanjaroPage() {
             Mount <span className="text-brand-gold">Kilimanjaro</span>
           </h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Choose from 8 iconic routes to the Roof of Africa. Each offers a unique journey to Uhuru Peak at 5,895 meters.
+            Choose from 7 iconic routes to the Roof of Africa. Each offers a unique journey to Uhuru Peak at 5,895 meters.
           </p>
         </div>
       </section>

@@ -47,6 +47,7 @@ function slugifyFromFile(filename: string): string {
   return filename
     .replace(/\.docx\.md$/, "")
     .replace(/\.md$/, "")
+    .replace(/^Kilimanjaro\s*-\s*/i, "")
     .toLowerCase()
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-");
@@ -67,33 +68,30 @@ function extractTableValue(line: string): string {
 }
 
 const routeDescriptions: Record<string, string> = {
-  "kilimanjaro---lemosho-route-7-8-day":
+  "lemosho-route-7-8-day":
     "The Lemosho Route is widely considered the most beautiful path to the summit of Kilimanjaro. Starting on the western side of the mountain, it offers stunning scenery, excellent acclimatization, and high summit success rates.",
-  "kilimanjaro---machame-route":
+  "machame-route":
     "The Machame Route, also known as the Whiskey Route, is one of the most popular and scenic paths on Kilimanjaro. It features dramatic landscapes, challenging terrain, and great acclimatization with its climb-high-sleep-low profile.",
-  "kilimanjaro---marangu-route":
+  "marangu-route":
     "The Marangu Route, known as the Coca-Cola Route, is the oldest and most established path on Kilimanjaro. It is the only route offering hut accommodation, making it a comfortable choice for those preferring not to camp.",
-  "kilimanjaro---rongai-route-5-day":
-    "The Rongai Route is the only trail that approaches Kilimanjaro from the north, near the Kenyan border. This 5-day itinerary offers a unique wilderness experience with fewer crowds and a chance to spot wildlife.",
-  "kilimanjaro---rongai-route-6-7-day":
+  "rongai-route-6-7-day":
     "The Rongai Route from the north provides a more gradual ascent and drier weather conditions. This extended 6 to 7-day version includes extra time for acclimatization and exploration of the majestic Mawenzi Peak.",
-  "kilimanjaro---umbwe-route":
+  "umbwe-route":
     "The Umbwe Route is the shortest, steepest, and most challenging route on Kilimanjaro. It is ideal for experienced trekkers seeking a tough, direct path to the summit with dramatic scenery and solitude.",
-  "kilimanjaro---londorosi-route":
+  "londorosi-route":
     "The Londorosi Route follows the same spectacular western approach as Lemosho, starting at Londorosi Gate. It traverses lush rainforest, crosses the stunning Shira Plateau, and offers excellent acclimatization with some of the highest summit success rates on Kilimanjaro.",
-  "kilimanjaro---northern-circuit-route":
+  "northern-circuit-route":
     "The Northern Circuit is the longest and newest route on Kilimanjaro, offering the highest summit success rate due to exceptional acclimatization. It circles the remote northern slopes with 360° panoramic views and the least crowds of any trail.",
 };
 
 const routeImages: Record<string, string> = {
-  "kilimanjaro---lemosho-route-7-8-day": "/Kilimanjaro images/shira-2-camp.jpg",
-  "kilimanjaro---machame-route": "/Kilimanjaro images/machame-hut-camps.jpg",
-  "kilimanjaro---marangu-route": "/Kilimanjaro images/horombo-hut.jpg",
-  "kilimanjaro---rongai-route-5-day": "/Kilimanjaro images/simba-camp.jpg",
-  "kilimanjaro---rongai-route-6-7-day": "/Kilimanjaro images/rongai-gate-sign.jpg",
-  "kilimanjaro---umbwe-route": "/Kilimanjaro images/barranco-camp.jpg",
-  "kilimanjaro---londorosi-route": "/Kilimanjaro images/shira-1-camp.jpg",
-  "kilimanjaro---northern-circuit-route": "/Kilimanjaro images/kilimanjaro-aerial-crater.jpg",
+  "lemosho-route-7-8-day": "/Kilimanjaro images/shira-2-camp.jpg",
+  "machame-route": "/Kilimanjaro images/machame-hut-camps.jpg",
+  "marangu-route": "/Kilimanjaro images/horombo-hut.jpg",
+  "rongai-route-6-7-day": "/Kilimanjaro images/rongai-gate-sign.jpg",
+  "umbwe-route": "/Kilimanjaro images/barranco-camp.jpg",
+  "londorosi-route": "/Kilimanjaro images/shira-1-camp.jpg",
+  "northern-circuit-route": "/Kilimanjaro images/kilimanjaro-aerial-crater.jpg",
 };
 
 const meruDescriptions: Record<string, string> = {
@@ -144,8 +142,9 @@ function parseMountainPackage(
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
 
-    if (line.startsWith("The ") && line.includes("Route") && !title) {
-      title = cleanText(line.replace(/^#+\s*/, ""));
+    const strippedLine = line.replace(/^#+\s*/, "");
+    if (strippedLine.startsWith("The ") && strippedLine.includes("Route") && !title) {
+      title = cleanText(strippedLine);
       continue;
     }
 

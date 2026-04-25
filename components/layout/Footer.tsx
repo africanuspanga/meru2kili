@@ -20,13 +20,13 @@ export default function Footer() {
   ];
 
   const kilimanjaroRoutes = [
-    { label: "Machame Route", href: "/kilimanjaro/kilimanjaro---machame-route/" },
-    { label: "Marangu Route", href: "/kilimanjaro/kilimanjaro---marangu-route/" },
-    { label: "Lemosho Route", href: "/kilimanjaro/kilimanjaro---lemosho-route-7-8-day/" },
-    { label: "Londorosi Route", href: "/kilimanjaro/kilimanjaro---londorosi-route/" },
-    { label: "Northern Circuit", href: "/kilimanjaro/kilimanjaro---northern-circuit-route/" },
-    { label: "Rongai Route", href: "/kilimanjaro/kilimanjaro---rongai-route-5-day/" },
-    { label: "Umbwe Route", href: "/kilimanjaro/kilimanjaro---umbwe-route/" },
+    { label: "Machame Route", href: "/kilimanjaro/machame-route/" },
+    { label: "Marangu Route", href: "/kilimanjaro/marangu-route/" },
+    { label: "Lemosho Route", href: "/kilimanjaro/lemosho-route-7-8-day/" },
+    { label: "Londorosi Route", href: "/kilimanjaro/londorosi-route/" },
+    { label: "Northern Circuit", href: "/kilimanjaro/northern-circuit-route/" },
+    { label: "Rongai Route", href: "/kilimanjaro/rongai-route-6-7-day/" },
+    { label: "Umbwe Route", href: "/kilimanjaro/umbwe-route/" },
   ];
 
   const paymentLogos = [
